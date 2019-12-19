@@ -1,5 +1,7 @@
 package com.rab3.repositories;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,8 +17,13 @@ public class TeamRepository {
 
 	private EntityManager entityManager;
 	
-	public void save(TeamEntity team) {
-		entityManager.persist(team);
+	public TeamEntity save(TeamEntity team) {
+		return entityManager.merge(team);
+	}
+	
+	public List<TeamEntity> getAll(){
+		Query q = entityManager.createQuery("from TeamEntity");
+		return q.getResultList();
 	}
 	
 	public TeamEntity getTeamByName(String teamName) {

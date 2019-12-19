@@ -2,10 +2,19 @@ package com.rab3.dtos;
 
 public class TeamDto {
 
+	private Long id;
 	private String name;
 	private String country;
 	private String mngr;
 	private String logo;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
