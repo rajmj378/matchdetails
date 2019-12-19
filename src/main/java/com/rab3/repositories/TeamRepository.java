@@ -26,6 +26,10 @@ public class TeamRepository {
 		return q.getResultList();
 	}
 	
+	public TeamEntity getById(Long id) {
+		return entityManager.find(TeamEntity.class, id);
+	}
+	
 	public TeamEntity getTeamByName(String teamName) {
 		Query q = entityManager.createQuery("select t from TeamEntity where t.name =:name");
 		q.setParameter("name", teamName);

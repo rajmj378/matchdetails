@@ -31,6 +31,8 @@ public class TeamController {
 		return teamService.getAllTeam();
 	}
 	
+	// TODO implement uploading the logo
 	
+	// TODO get api by id/name and include all the players in that team
 
 }

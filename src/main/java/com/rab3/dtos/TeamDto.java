@@ -1,5 +1,7 @@
 package com.rab3.dtos;
 
+import java.util.List;
+
 public class TeamDto {
 
 	private Long id;
@@ -7,6 +9,8 @@ public class TeamDto {
 	private String country;
 	private String mngr;
 	private String logo;
+	
+//	private List<PlayerDto> players;
 
 	public Long getId() {
 		return id;
