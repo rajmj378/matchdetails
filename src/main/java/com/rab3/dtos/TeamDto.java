@@ -9,8 +9,8 @@ public class TeamDto {
 	private String country;
 	private String mngr;
 	private String logo;
-	
-//	private List<PlayerDto> players;
+
+	private List<PlayerDto> players;
 
 	public Long getId() {
 		return id;
@@ -50,6 +50,14 @@ public class TeamDto {
 
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	public List<PlayerDto> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<PlayerDto> players) {
+		this.players = players;
 	}
 
 	@Override

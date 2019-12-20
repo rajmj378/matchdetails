@@ -3,6 +3,7 @@ package com.rab3.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rab3.converters.PlayerConverter;
 import com.rab3.dtos.PlayerDto;
 import com.rab3.entities.PlayerEntity;
 import com.rab3.entities.TeamEntity;
@@ -23,7 +24,7 @@ public class PlayerService {
 		if (team == null) {
 			throw new Exception("Team doesnt exist : " + teamId);
 		} else {
-			PlayerEntity p = convert(dto);
+			PlayerEntity p = PlayerConverter.convert(dto);
 			p.setTeam(team);
 			if (p != null) {
 				playerRepository.save(p);
@@ -32,14 +33,5 @@ public class PlayerService {
 
 	}
 
-	private PlayerEntity convert(PlayerDto dto) {
-		PlayerEntity p = null;
-		if (dto != null) {
-			p = new PlayerEntity();
-			p.setName(dto.getName());
-			p.setPosition(dto.getPosition());
-			p.setAge(dto.getAge());
-		}
-		return p;
-	}
+	
 }

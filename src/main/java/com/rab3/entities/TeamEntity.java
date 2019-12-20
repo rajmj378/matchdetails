@@ -1,12 +1,15 @@
 package com.rab3.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +37,9 @@ public class TeamEntity {
 
 	@Column(name = "updated_at")
 	private Date updatedAt;
+
+	@OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+	private List<PlayerEntity> players;
 
 	public Long getId() {
 		return id;
@@ -89,6 +95,14 @@ public class TeamEntity {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public List<PlayerEntity> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<PlayerEntity> players) {
+		this.players = players;
 	}
 
 }
