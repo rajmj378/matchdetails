@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rab3.dtos.TeamDto;
 import com.rab3.services.TeamService;
@@ -32,7 +33,12 @@ public class TeamController {
 		return teamService.getAllTeam();
 	}
 
-	// TODO implement uploading the logo
+	@RequestMapping(value = "/logo/upload", method = RequestMethod.POST)
+	public void uploadFileHandler(@RequestParam("teamId") Long teamId,
+			@RequestParam("file") MultipartFile file) throws Exception {
+
+		teamService.uploadLogo(file, teamId);
+	}
 
 	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
 	public TeamDto getTeamById(@PathVariable Long id) {

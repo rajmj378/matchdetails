@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rab3.converters.PlayerConverter;
 import com.rab3.dtos.PlayerDto;
@@ -19,6 +20,8 @@ public class TeamService {
 
 	@Autowired
 	private TeamRepository teamRepository;
+	@Autowired
+	private LogoService logoService;
 
 	public TeamDto createTeam(TeamDto dto) {
 
@@ -50,6 +53,19 @@ public class TeamService {
 		}
 		return returnList;
 
+	}
+	
+	public void uploadLogo(MultipartFile file, Long teamId) throws Exception {
+		TeamEntity team = teamRepository.getById(teamId);
+		if(team == null) {
+			throw new Exception("Team doesnt exist : " + teamId);
+		}
+		String fileName = "logo-" + teamId + ".jpg";
+		String finalName = logoService.uploadLogo(file, fileName);
+		
+		team.setLogo(finalName);
+		teamRepository.save(team);
+		
 	}
 
 	private TeamDto convert(TeamEntity te) {
