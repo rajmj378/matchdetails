@@ -17,8 +17,6 @@ public class MatchRepository {
 	public MatchEntity save(MatchEntity match) {
 		return entityManager.merge(match);
 	}
-	
-	
 
 	public EntityManager getEntityManager() {
 		return entityManager;
